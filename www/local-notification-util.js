@@ -173,8 +173,9 @@ exports.convertActions = function (options) {
     if (!options.actions)
         return null;
 
-    for (var action of options.actions) {
 
+    for (var i = 0; i < options.actions; i++) {
+        var action = options.actions[i]
         if (!action.id) {
             console.warn('Action with title ' + action.title + ' ' +
                          'has no id and will not be added.');
@@ -335,7 +336,8 @@ exports.createCallbackFn = function (fn, scope) {
 exports.convertIds = function (ids) {
     var convertedIds = [];
 
-    for (var id of ids) {
+    for (var i = 0; i < ids.length; i++) {
+        var id = ids[i]
         convertedIds.push(Number(id));
     }
 
@@ -353,7 +355,8 @@ exports.convertIds = function (ids) {
 exports.getValueFor = function (options) {
     var keys = Array.apply(null, arguments).slice(1);
 
-    for (var key of keys) {
+    for (var i = 0; i < keys.length; i++) {
+        var key = keys[i]
         if (options.hasOwnProperty(key)) {
             return options[key];
         }
