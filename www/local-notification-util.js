@@ -81,7 +81,9 @@ exports.mergeWithDefaults = function (options) {
 
     Object.assign(values, options);
 
-    for (var key in values) {
+    var keys = Object.keys(values)
+    for (var i=0; i < keys.length; i++) {
+        var key = keys[i]
         if (values[key] !== null) {
             options[key] = values[key];
         } else {
