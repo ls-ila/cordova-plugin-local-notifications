@@ -58,6 +58,13 @@ exports._defaults = {
     wakeup        : true
 };
 
+Object.assign = Object.assign || function (obj, copy) {
+    Object.getOwnPropertyNames(copy).forEach(function (name) {
+        Object.defineProperty(obj, name, Object.getOwnPropertyDescriptor(copy, name));
+    });
+    return obj;
+}
+
 // Listener
 exports._listener = {};
 

@@ -29,6 +29,16 @@ var exec = require('cordova/exec');
  *
  * @return [ Void ]
  */
+
+ // Polyfill
+
+Object.assign = Object.assign || function (obj, copy) {
+    Object.getOwnPropertyNames(copy).forEach(function (name) {
+        Object.defineProperty(obj, name, Object.getOwnPropertyDescriptor(copy, name));
+    });
+    return obj;
+}
+
 exports.hasPermission = function (callback, scope) {
     var fn = this.createCallbackFn(callback, scope);
 
@@ -343,8 +353,9 @@ exports.addActionGroup = function (id, actions, callback, scope) {
  */
 exports.getDefaults = function () {
     var map = Object.assign({}, this._defaults);
-
-    for (var key in map) {
+    var keys = Object.keys(map);
+    for (var i=0; i < keys.length; i++) {
+        var key = keys[i]
         if (Array.isArray(map[key])) {
             map[key] = Array.from(map[key]);
         } else
