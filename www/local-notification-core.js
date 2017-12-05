@@ -38,6 +38,10 @@ Object.assign = Object.assign || function (obj, copy) {
     });
     return obj;
 }
+Array.from = Array.from || function (object) {
+    'use strict';
+    return [].slice.call(object);
+}
 
 exports.hasPermission = function (callback, scope) {
     var fn = this.createCallbackFn(callback, scope);

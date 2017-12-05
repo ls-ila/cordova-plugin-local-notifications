@@ -65,6 +65,11 @@ Object.assign = Object.assign || function (obj, copy) {
     return obj;
 }
 
+Array.from = Array.from || function (object) {
+    'use strict';
+    return [].slice.call(object);
+}
+
 // Listener
 exports._listener = {};
 
